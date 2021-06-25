@@ -48,7 +48,7 @@ jobs:
         PGHOST: localhost
         PGUSER: ShareAttraction
         PGPASSWORD: postgres
-        DATABASE_URL: postgres://postgres:@localhost:5432/test
+        DATABASE_URL: postgres://ShareAttraction:@localhost:5432/test
       run: |
         bin/rails db:setup
         bundle exec rake
