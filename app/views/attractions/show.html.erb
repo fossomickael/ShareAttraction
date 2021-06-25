@@ -1,2 +1,8 @@
 <h1><%= @attraction.name %> </h1>
 <p><%= @attraction.description %></p>
+
+<% if current_user.ismember?(@attraction) %>
+    <button type="button" class="btn btn-secondary" id="joined">Joined</button>
+<% else %>
+    <%= button_to "Join", attraction_attraction_members_path(@attraction) %>
+<% end %>
