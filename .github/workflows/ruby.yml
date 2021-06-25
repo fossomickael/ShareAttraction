@@ -53,6 +53,6 @@ jobs:
         PGUSER: rails_github_actions
         PGPASSWORD: postgres
       run: |
-        bin/rake db:test:prepare
+        bin/rake db:test:prepare db:test:migrate
     - name: Run tests
       run: bundle exec rake
