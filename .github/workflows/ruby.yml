@@ -41,5 +41,7 @@ jobs:
       run: yarn install
     - name: Webpack compile
       run: bundle exec rails webpacker:compile
+    - name: db migrate
+      run: bundle exec rake db:create db:migrate
     - name: Run tests
       run: bundle exec rake
