@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :user  do
-    email { "test@test.com" }
+  factory :user do
+    sequence(:email) { |n| "name_#{n}@example.com" }
     password { "4A54d65S4ad5qz4xw" }
   end
 
@@ -16,5 +16,10 @@ FactoryBot.define do
     attraction
     title { "How to grow your audience" }
     content { "There are five steps involved." }
+  end
+
+  factory :attraction_member do
+    user
+    attraction
   end
 end

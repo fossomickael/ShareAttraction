@@ -9,4 +9,8 @@ RSpec.describe Attraction, type: :model do
     attraction = build(:attraction, description: nil)
     expect(attraction).to_not be_valid
   end
+  it "has many posts" do
+    t = Attraction.reflect_on_association(:posts)
+    expect(t.macro).to eq(:has_many)
+  end
 end

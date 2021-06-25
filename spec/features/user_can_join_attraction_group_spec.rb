@@ -7,6 +7,7 @@ feature "user can join attractions" do
     visit attraction_path(attraction)
     expect(page).to have_button 'Join'
   end
+
   scenario "sucessfully" do
     sign_in
     attraction = create(:attraction)
