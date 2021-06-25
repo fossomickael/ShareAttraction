@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :attraction_members
   has_many :attractions, through: :attraction_members
 
+  has_many :posts
+
   def ismember?(attraction)
     !attractions.where(id: attraction.id).empty?
   end
