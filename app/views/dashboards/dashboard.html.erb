@@ -1,4 +1,9 @@
 <h1>My Attractions</h1>
 
 
-
+ <% @attractions.each do |attraction| %>
+    <h2> <%= attraction.name %></h2>
+        <% attraction.posts.each do |post| %>
+           <h3> <%= "#{post.title} #{post.user.email}" %> </h3>
+        <% end %>
+  <% end %>

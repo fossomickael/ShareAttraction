@@ -1,5 +1,5 @@
 class DashboardsController < ApplicationController
-    def dashboard
-
-    end
+  def dashboard
+    @attractions = current_user.attractions
+  end
 end
