@@ -1,0 +1,13 @@
+<h1>Posts#new</h1>
+<%= simple_form_for(@post) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <%= f.association :attraction %>
+  <%= f.input :published, label: 'Publier maintenant' %>
+  <%= f.submit %>
+
+<% end %>

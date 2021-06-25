@@ -1,6 +1,12 @@
 class AttractionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index ]
+
   def new
     @attraction = Attraction.new
+  end
+
+  def index
+    @attractions = Attraction.all
   end
 
   def create
