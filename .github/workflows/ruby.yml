@@ -21,6 +21,7 @@ jobs:
           POSTGRES_USER: rails_github_actions
           POSTGRES_DB: rails_github_actions_test
           POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         ports: ["5432:5432"]
 
     steps:
@@ -41,6 +42,8 @@ jobs:
       run: yarn install
     - name: Webpack compile
       run: bundle exec rails webpacker:compile
+    - name: Install library for postgres
+      run: sudo apt-get install libpq-dev
     - name: Setup test database
       env:
         RAILS_ENV: test
