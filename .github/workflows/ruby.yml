@@ -45,7 +45,7 @@ jobs:
       env:
         RAILS_ENV: test
         PGHOST: localhost
-        PGUSER: myapp
+        PGUSER: rails_github_actions
         PGPASSWORD: postgres
       run: |
         bin/rails db:setup
