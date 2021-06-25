@@ -48,10 +48,8 @@ jobs:
         PGHOST: localhost
         PGUSER: ShareAttraction
         PGPASSWORD: postgres
+        DATABASE_URL: postgres://postgres:@localhost:5432/test
       run: |
         bin/rails db:setup
-    - name: Build and run tests
-      env:
-        DATABASE_URL: postgres://postgres:@localhost:5432/test
-        RAILS_ENV: test
-      run: bundle exec rake
+        bundle exec rake
+ 
