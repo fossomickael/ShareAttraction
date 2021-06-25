@@ -5,6 +5,14 @@ RSpec.describe User, type: :model do
     t = User.reflect_on_association(:posts)
     expect(t.macro).to eq(:has_many)
   end
+  it "has many attractions" do
+    t = User.reflect_on_association(:attractions)
+    expect(t.macro).to eq(:has_many)
+  end
+  it "has many attraction_members" do
+    t = User.reflect_on_association(:attraction_members)
+    expect(t.macro).to eq(:has_many)
+  end
   it "should have an email" do
     user = build(:user, email: nil)
     expect(user).to_not be_valid
