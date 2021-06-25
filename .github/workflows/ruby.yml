@@ -43,7 +43,9 @@ jobs:
     - name: Webpack compile
       run: bundle exec rails webpacker:compile
     - name: Install library for postgres
-      run: sudo apt-get install libpq-dev
+      run: |
+        sudo apt-get install libpq-dev
+        sudo service postgresql start
     - name: Setup test database
       env:
         RAILS_ENV: test
@@ -51,6 +53,6 @@ jobs:
         PGUSER: rails_github_actions
         PGPASSWORD: postgres
       run: |
-        bin/rails db:create db:migrate
+        bin/rake db:test:prepare
     - name: Run tests
       run: bundle exec rake
