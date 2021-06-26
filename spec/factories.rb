@@ -22,4 +22,10 @@ FactoryBot.define do
     user
     attraction
   end
+
+  factory :post_referrer do
+    user
+    post
+    count {0}
+  end
 end
