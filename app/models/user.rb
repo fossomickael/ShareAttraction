@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
   has_many :posts
 
-  after_validation :set_referrer_code
+  after_create :set_referrer_code
+
   def ismember?(attraction)
     !attractions.where(id: attraction.id).empty?
   end
@@ -17,7 +18,8 @@ class User < ApplicationRecord
   private
 
   def set_referrer_code
-    code = "#{id} #{SecureRandom.hex(5)}"
+    code = "#{id}#{SecureRandom.hex(5)}"
     self.referrer_code = code
+    save
   end
 end
