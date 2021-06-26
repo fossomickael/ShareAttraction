@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     user = build(:user, password: nil)
     expect(user).to_not be_valid
   end
-  it "a referrer code ig generated after commit" do
+  it "a referrer code is generated after commit" do
     user = create(:user)
     expect(user.referrer_code.is_a?(String)).to be true
   end
