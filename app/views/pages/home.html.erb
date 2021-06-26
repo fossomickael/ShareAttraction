@@ -1,5 +1,5 @@
 <h1>Share Attraction</h1>
  <% @posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
+    <li class="article_title"><%= link_to post.title, post_path(post) %></li>
   <% end %>
   <ul>
