@@ -1,8 +1,28 @@
 <h1><%= @attraction.name %> </h1>
-<p><%= @attraction.description %></p>
-
-<% if current_user.ismember?(@attraction) %>
+<% if  current_user && current_user.ismember?(@attraction) %>
     <button type="button" class="btn btn-secondary" id="joined">Joined</button>
 <% else %>
-    <%= button_to "Join", attraction_attraction_members_path(@attraction) %>
+    <%= button_to "Join", attraction_attraction_members_path(@attraction), class: "btn btn-flat"%>
 <% end %>
+<p><%= @attraction.description %></p>
+
+
+
+<h3>Members</h3>
+ <% @attraction.users.each do |user| %>
+    <%= user.email %>
+ <% end %>
+<div class="row">
+  <% @attraction.posts.each do |post| %>
+  <div class="col-sm-5">
+    <div class="card-article ">
+      <img src="https://source.unsplash.com/random?sig=<%=rand(100) %>" />
+      <div class="card-article-infos">
+        <h2><%= link_to post.title, post_path(post) %></h2>
+        
+        <p class="card-author"><%=  post.user.email %> for <%=  link_to post.attraction.name, attraction_path(post.attraction) %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  </div>

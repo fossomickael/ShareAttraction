@@ -7,9 +7,13 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
 
 a:hover,active,visited { text-decoration: none; }
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 32px;
+}
