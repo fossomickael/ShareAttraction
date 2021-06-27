@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "unauth user can see a post on homepage" do
+feature "user visits home page" do
   scenario "sucessfully" do
     post = create(:post, title: "How to be have a great hompepage")
     visit root_path
