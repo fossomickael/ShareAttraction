@@ -1,10 +1,14 @@
-<%= form_for(@attraction) do |f| %>
+<h1>Nouveau groupe d'attraction</h1>
+<div>
+<%= simple_form_for(@attraction) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-
+  <br/>
   <%= f.label :description %>
   <%= f.text_area :description %>
-
+  <br/>
   <%= f.submit %>
 
 <% end %>
+
+</div>
