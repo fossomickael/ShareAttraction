@@ -1,5 +1,5 @@
 class AttractionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def new
     @attraction = Attraction.new
@@ -19,7 +19,7 @@ class AttractionsController < ApplicationController
   end
 
   def show
-    @attraction = Attraction.find(params[:id])
+    @attraction = Attraction.includes(:users,:posts).find(params[:id])
   end
 
   private
