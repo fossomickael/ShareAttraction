@@ -13,6 +13,10 @@ RSpec.describe User, type: :model do
     t = User.reflect_on_association(:attraction_members)
     expect(t.macro).to eq(:has_many)
   end
+  it "has many post referrals" do
+    t = User.reflect_on_association(:post_referrers)
+    expect(t.macro).to eq(:has_many)
+  end
   it "should have an email" do
     user = build(:user, email: nil)
     expect(user).to_not be_valid
@@ -24,5 +28,24 @@ RSpec.describe User, type: :model do
   it "a referrer code is generated after commit" do
     user = create(:user)
     expect(user.referrer_code.is_a?(String)).to be true
+  end
+  it "destroys depends attraction_members" do
+    user_delete = create(:user, email: "will@delete.com")
+    attraction_member = create(:attraction_member, user: user_delete)
+    user_delete.destroy
+    expect(AttractionMember.all).not_to include attraction_member
+  end
+  it "destroys depends post" do
+    user_delete = create(:user, email: "will@delete.com")
+    post = create(:post, user: user_delete)
+    user_delete.destroy
+    expect(Post.all).not_to include post
+  end
+  it "destroys depends post_referrer " do
+    user_delete = create(:user, email: "will@delete.com")
+    post_need_delete = create(:post, user: user_delete)
+    post_referrer = create(:post_referrer, user: user_delete, post: post_need_delete)
+    user_delete.destroy
+    expect(PostReferrer.all).not_to include post_referrer
   end
 end

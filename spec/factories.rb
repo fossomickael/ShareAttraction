@@ -26,6 +26,12 @@ FactoryBot.define do
   factory :post_referrer do
     user
     post
-    count {0}
+    count { 0 }
+  end
+
+  def user_with_posts(posts_count: 5)
+    FactoryBot.create(:user) do |user|
+      FactoryBot.create_list(:post, posts_count, user: user)
+    end
   end
 end

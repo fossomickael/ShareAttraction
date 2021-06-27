@@ -13,4 +13,11 @@ RSpec.describe Attraction, type: :model do
     t = Attraction.reflect_on_association(:posts)
     expect(t.macro).to eq(:has_many)
   end
+  it "delete should destroy member" do
+    attraction = create(:attraction)
+    user = create(:user)
+    attraction_member = create(:attraction_member, attraction: attraction, user: user)
+    attraction.destroy
+    expect(AttractionMember.all).not_to include attraction_member
+  end
 end

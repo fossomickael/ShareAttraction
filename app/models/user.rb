@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :attraction_members
+  has_many :attraction_members, dependent: :destroy
   has_many :attractions, through: :attraction_members
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_many :post_referrers
 
   after_create :set_referrer_code
 
