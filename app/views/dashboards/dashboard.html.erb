@@ -7,8 +7,8 @@
          <div class="notification">
             <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
             <div class="notification-content">
-               <p><small><%= "#{post.title} #{post.user.email}"  %></small></p>
-               <p> <%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %></p>
+               <p><small><%= "#{post.title} by #{post.user.email}"  %></small></p>
+               <p> My share link:<%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %></p>
             </div>
 
             <div class="notification-actions">

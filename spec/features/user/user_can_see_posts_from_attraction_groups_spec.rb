@@ -10,7 +10,7 @@ feature "user can see group attractions on Dashboard" do
     create(:attraction_member, user: post_author, attraction: attraction)
     create(:attraction_member, user: other_user, attraction: attraction)
     sign_in_as(other_user)
-    expect(page).to have_css 'h3', text: post.title
+    expect(page).to have_css 'p', text: post.title
   end
 
   scenario "see links with his referrer code" do
