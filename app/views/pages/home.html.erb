@@ -1,5 +1,16 @@
 <h1>Share Attraction</h1>
+<div class="row">
  <% @posts.each do |post| %>
-    <li class="article_title"><%= link_to post.title, post_path(post) %></li>
+  <div class="col-sm-5">
+    <div class="card-article ">
+      <img src="https://source.unsplash.com/random?sig=<%=rand(100) %>" />
+      <div class="card-article-infos">
+        <h2><%= link_to post.title, post_path(post) %></h2>
+        
+        <p class="card-author"><%=  post.user.email %> for <%=  link_to post.attraction.name, attraction_path(post.attraction) %></p>
+      </div>
+    </div>
+  </div>
   <% end %>
-  <ul>
+  </div>
+ 
