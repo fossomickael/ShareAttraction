@@ -4,8 +4,20 @@
  <% @attractions.each do |attraction| %>
     <h2> <%= attraction.name %></h2>
         <% attraction.posts.each do |post| %>
-           <h3> <%= "#{post.title} #{post.user.email}"  %> </h3>
-            share Link: 
-           <%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %>
+         <div class="notification">
+            <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+            <div class="notification-content">
+               <p><small><%= "#{post.title} #{post.user.email}"  %></small></p>
+               <p> <%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %></p>
+            </div>
+
+            <div class="notification-actions">
+               
+               <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+            </div>
+         </div>
+          
         <% end %>
   <% end %>
+
+
