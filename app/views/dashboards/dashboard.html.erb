@@ -12,8 +12,11 @@
             </div>
 
             <div class="notification-actions">
-               
-               <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+               <a class="twitter-share-button"
+               href="https://twitter.com/intent/tweet?text=<%=
+                post.title %> a post by <%= post.user.email %>&url=https://shareattraction.com<%=post_path(post)%>?ref=<%=current_user.referrer_code%>">
+               <i class="fab fa-twitter action"></i></a>
+               <a href="#">Archive <i class="fas fa-archive archive"></i></a>
             </div>
          </div>
           
