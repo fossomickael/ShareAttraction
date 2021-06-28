@@ -22,10 +22,13 @@ export default class extends Controller {
       this.tribute.attach(this.fieldTarget);
     }
 
-      static async fetchUsers(text, callback) {
-        url = `/mentions.json?query=${text}`
-        result = await fetch;
+    async fetchUsers(text, callback) {
+        const url = `/mentions.json?query=${text}`
+        const response = await fetch(url);
         const users = await response.json();
-        return users;
+        callback(users);
     }
+
+     
 }
+
