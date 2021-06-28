@@ -1,6 +1,6 @@
 require 'rails_helper'
-feature "user can tweet" do
-  scenario "sucessfully" do
+feature "user can share" do
+  scenario "with Twitter" do
     users = FactoryBot.build_list(:user, 2)
     post_author = users[1]
     other_user = users[0]
