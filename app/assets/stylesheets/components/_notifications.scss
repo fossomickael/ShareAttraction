@@ -22,15 +22,12 @@
     font-weight: bold;
   }
   .notification .notification-actions {
-    opacity: 0;
+  
     display: flex;
     transition: ease .3s;
   }
   
-  .notification:hover .notification-actions {
-    opacity: 1;
-  }
-  
+ 
   .notification .notification-actions a {
     color: #999999;
     margin-left: 16px;
@@ -39,4 +36,12 @@
   
   .notification .notification-actions a:hover {
     color: #555555;
+  }
+
+  .archive {
+    color: $blue;
+  }
+
+  .action {
+    color: $blue;
   }
