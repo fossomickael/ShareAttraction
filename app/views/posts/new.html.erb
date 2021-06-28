@@ -6,9 +6,9 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
  </div>
-  <div class="field">
+  <div class="field ">
     <%= f.label :content %>
-    <%= f.rich_text_area :content, class: "form-control", data: {controller: 'mentions', target: 'mentions.field' }%>
+    <%= f.rich_text_area :content, class: "customized-min-height", data: {controller: 'mentions', target: 'mentions.field' }%>
   </div>
   <div class="field">
     <%= f.association :attraction %>

@@ -6,6 +6,7 @@ export default class extends Controller {
 
   connect() {
     this.editor = this.fieldTarget.editor
+   
     this.initializeTribute()
   }
 
@@ -20,6 +21,27 @@ export default class extends Controller {
         values: this.fetchUsers,
       })
       this.tribute.attach(this.fieldTarget);
+      this.tribute.range.pasteHTML = this._pasteHtml.bind(this)
+      this.fieldTarget.addEventListener("tribute-replaced",this.replaced)
+    }
+
+    replaced(e){
+      const mention = e.detail.item.original
+
+      // const attachment = new Trix.Attachment({
+      //   sgid: mention.sgid,
+      //   content: mention.content
+      // })
+     
+      // this.editor.insertAttachment(attachment)
+      this.editor.insertString("mention.email")
+    }
+    
+    _pasteHtml(html, startPos, endPos) {
+      const position = this.editor.getPosition()
+      console.log(position)
+      this.editor.setSelectedRange ([position  - (endPos - startPos), position]) 
+      this.editor.deleteInDirection("backward")
     }
 
     async fetchUsers(text, callback) {

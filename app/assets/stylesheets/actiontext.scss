@@ -36,7 +36,9 @@
 }
 
 trix-editor {
-  &.form-control{
-    height:auto;
+  &.customized-min-height {
+    min-height: 45em;
   }
 }
+
+
