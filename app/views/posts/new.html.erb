@@ -8,7 +8,7 @@
  </div>
   <div class="field">
     <%= f.label :content %>
-    <%= f.rich_text_area :content %>
+    <%= f.rich_text_area :content, class: "form-control", data: {controller: 'mentions', target: 'mentions.field' }%>
   </div>
   <div class="field">
     <%= f.association :attraction %>
