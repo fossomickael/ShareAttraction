@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   
   resources :posts, only: [:create, :new, :show]
-
+  resources :mentions, only: [:index]
   
 
   authenticated :user do 

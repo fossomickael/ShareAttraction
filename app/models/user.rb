@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include ActionText::Attachable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -8,7 +9,7 @@ class User < ApplicationRecord
   has_many :attractions, through: :attraction_members
 
   has_many :posts, dependent: :destroy
-  has_many :post_referrers
+  has_many :post_referrers, dependent: :destroy
 
   after_create :set_referrer_code
 
