@@ -12,6 +12,8 @@
             </div>
 
             <div class="notification-actions">
+            <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+            <script type="IN/Share" data-url=<%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %>></script>
                <a class="twitter-share-button"
                href="https://twitter.com/intent/tweet?text=<%=
                 post.title %> a post by <%= post.user.email %>&url=https://shareattraction.com<%=post_path(post)%>?ref=<%=current_user.referrer_code%>">
