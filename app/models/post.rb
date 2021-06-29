@@ -7,6 +7,11 @@ class Post < ApplicationRecord
   has_many :post_referrers, dependent: :destroy
 
   has_rich_text :content
+  has_many :mentions
+
+  def mentioned?(user)
+    mentions.find_by(user_id: user.id).is_a?(Mention)
+  end
 
   private
 

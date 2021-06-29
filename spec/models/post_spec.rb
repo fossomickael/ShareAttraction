@@ -25,4 +25,15 @@ RSpec.describe Post, type: :model do
     post = build(:post, content: "@test")
     expect(post).to be_valid
   end
+  it "mentioned should return true if mentioned" do
+    post = create(:post)
+    user = create(:user)
+    mention = create(:mention, user: user, post: post)
+    expect(post.mentioned?(user)).to be true
+  end
+  it "mentioned should return false if not mentioned" do
+    post = create(:post)
+    user = create(:user)
+    expect(post.mentioned?(user)).to be false
+  end
 end
