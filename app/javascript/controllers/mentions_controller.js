@@ -45,10 +45,16 @@ export default class extends Controller {
       this.editor.deleteInDirection("backward")
     }
     async fetchUsers(text, callback) {
+      try {
         const url = `/api/v1/mentions?query=${text}`
         const response = await fetch(url);
         const users = await response.json();
         callback(users);
+      }
+      catch (error) {
+        callback([]);
+      }
+       
     }
 
      
