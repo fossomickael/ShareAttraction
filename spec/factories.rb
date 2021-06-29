@@ -35,4 +35,9 @@ FactoryBot.define do
       FactoryBot.create_list(:post, posts_count, user: user)
     end
   end
+
+  factory :mention do
+    user
+    post
+  end
 end

@@ -21,4 +21,8 @@ RSpec.describe Post, type: :model do
     post = build(:post, title: nil)
     expect(post).to_not be_valid
   end
+  it "can contain a mention" do
+    post = build(:post, content: "@test")
+    expect(post).to be_valid
+  end
 end
