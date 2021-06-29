@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   end
   
   resources :posts, only: [:create, :new, :show]
-
   
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :mentions, only: [:index]
+    end
+  end
 
   authenticated :user do 
     root to: 'dashboards#dashboard', as: :root_authenticate

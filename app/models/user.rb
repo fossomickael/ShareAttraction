@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :attractions, through: :attraction_members
 
   has_many :posts, dependent: :destroy
-  has_many :post_referrers
+  has_many :post_referrers, dependent: :destroy
 
   after_create :set_referrer_code
 
