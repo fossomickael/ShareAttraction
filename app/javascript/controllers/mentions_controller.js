@@ -6,7 +6,6 @@ export default class extends Controller {
 
   connect() {
     this.editor = this.fieldTarget.editor
-   
     this.initializeTribute()
   }
 
@@ -15,37 +14,38 @@ export default class extends Controller {
   }
 
   initializeTribute() {
+    
       this.tribute = new Tribute ({
         allowSpaces: true,
         lookup: 'email',
         values: this.fetchUsers,
       })
       this.tribute.attach(this.fieldTarget);
-      this.tribute.range.pasteHTML = this._pasteHtml.bind(this)
+      this.tribute.range.pasteHtml = this._pasteHtml.bind(this)
       this.fieldTarget.addEventListener("tribute-replaced",this.replaced)
     }
 
     replaced(e){
       const mention = e.detail.item.original
-
+      console.log(mention)
       // const attachment = new Trix.Attachment({
       //   sgid: mention.sgid,
       //   content: mention.content
-      // })
-     
-      // this.editor.insertAttachment(attachment)
-      this.editor.insertString("mention.email")
+      //  })
+      const string = `@${mention.email}`
+      this.editor.insertString(string)
     }
     
     _pasteHtml(html, startPos, endPos) {
-      const position = this.editor.getPosition()
-      console.log(position)
-      this.editor.setSelectedRange ([position  - (endPos - startPos), position]) 
+      let position = this.editor.getPosition()
+      let tributeLength = endPos - startPos
+      let trixStartPos = position - tributeLength
+      let trixEndPos = position
+      this.editor.setSelectedRange([trixStartPos, trixEndPos])
       this.editor.deleteInDirection("backward")
     }
-
     async fetchUsers(text, callback) {
-        const url = `/mentions.json?query=${text}`
+        const url = `/api/v1/mentions?query=${text}`
         const response = await fetch(url);
         const users = await response.json();
         callback(users);
