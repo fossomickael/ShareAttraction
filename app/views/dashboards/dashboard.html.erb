@@ -4,7 +4,7 @@
  <% @attractions.each do |attraction| %>
     <h2> <%= attraction.name %></h2>
         <% attraction.posts.each do |post| %>
-         <div class="notification">
+         <div class="notification <%= "mentioned" if post.mentioned?(current_user) %>">
             <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
             <div class="notification-content">
                <p><small><%= "#{post.title} by #{post.user.email}"  %></small></p>

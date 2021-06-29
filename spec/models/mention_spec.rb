@@ -49,4 +49,5 @@ RSpec.describe Mention, type: :model do
     mention2 = build(:mention, user: user, post: post)
     expect(mention2).to_not be_valid
   end
+  
 end
