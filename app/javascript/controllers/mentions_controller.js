@@ -16,7 +16,7 @@ export default class extends Controller {
   initializeTribute() {
     
       this.tribute = new Tribute ({
-        allowSpaces: true,
+        allowSpaces: false,
         lookup: 'email',
         values: this.fetchUsers,
       })
@@ -34,6 +34,7 @@ export default class extends Controller {
       //  })
       const string = `@${mention.email}`
       this.editor.insertString(string)
+      this.editor.insertString(" ")
     }
     
     _pasteHtml(html, startPos, endPos) {
