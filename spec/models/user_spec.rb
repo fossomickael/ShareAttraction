@@ -25,6 +25,24 @@ RSpec.describe User, type: :model do
     user = build(:user, password: nil)
     expect(user).to_not be_valid
   end
+  it "should have an username" do
+    user = build(:user, username: nil)
+    expect(user).to_not be_valid
+  end
+  it "should not have space in username" do
+    user = build(:user, username: "with space")
+    expect(user).to_not be_valid
+  end
+  it "username should be unique" do
+    create(:user, username: "same")
+    user2 = build(:user, username: "same")
+    expect(user2).to_not be_valid
+  end
+  it "email should be unique" do
+    create(:user, email: "same@same.com")
+    user2 = build(:user, email: "same@same.com")
+    expect(user2).to_not be_valid
+  end
   it "a referrer code is generated after commit" do
     user = create(:user)
     expect(user.referrer_code.is_a?(String)).to be true

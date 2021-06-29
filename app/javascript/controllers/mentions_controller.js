@@ -17,7 +17,7 @@ export default class extends Controller {
     
       this.tribute = new Tribute ({
         allowSpaces: false,
-        lookup: 'email',
+        lookup: 'username',
         values: this.fetchUsers,
       })
       this.tribute.attach(this.fieldTarget);
@@ -32,7 +32,7 @@ export default class extends Controller {
       //   sgid: mention.sgid,
       //   content: mention.content
       //  })
-      const string = `@${mention.email}`
+      const string = `@${mention.username}`
       this.editor.insertString(string)
       this.editor.insertString(" ")
     }
