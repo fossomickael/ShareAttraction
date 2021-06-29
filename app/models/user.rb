@@ -12,6 +12,12 @@ class User < ApplicationRecord
 
   after_create :set_referrer_code
 
+  validates :username, presence: true
+  validates :username, format: { without: /\s/, message: "must contain no spaces" }
+  validates :username, uniqueness: true
+
+  validates :email, uniqueness: true
+
   def ismember?(attraction)
     !attractions.where(id: attraction.id).empty?
   end
