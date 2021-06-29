@@ -12,6 +12,12 @@ RSpec.describe Mention, type: :model do
     mention = build(:mention, user: nil, post: post)
     expect(mention).to_not be_valid
   end
+  it "should be the right user" do
+    post = create(:post)
+    user = create(:user)
+    mention = create(:mention, user: user, post: post)
+    expect(mention.user.id).to eq user.id
+  end
   it "should have a post" do
     user = build(:user)
     mention = build(:mention, user: user, post: nil)
