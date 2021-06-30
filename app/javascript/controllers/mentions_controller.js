@@ -32,8 +32,9 @@ export default class extends Controller {
       //   sgid: mention.sgid,
       //   content: mention.content
       //  })
+      const user_id = `${mention.id}`
       const string = `@${mention.username}`
-      this.editor.insertString(string)
+      this.editor.insertHTML(`<a href="/users/${user_id}">${string}</a>`)
       this.editor.insertString(" ")
     }
     
