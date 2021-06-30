@@ -17,6 +17,7 @@ FactoryBot.define do
     attraction
     title { "How to grow your audience" }
     content { "There are five steps involved." }
+   
   end
 
   factory :attraction_member do

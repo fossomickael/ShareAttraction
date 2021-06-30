@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.includes(:user, :attraction).find(params[:id])
     ref = params[:ref]
+    increment_visit(@post)
     increment_ref(ref, @post)
   end
 
@@ -27,16 +28,15 @@ class PostsController < ApplicationController
   end
 
   def increment_ref(ref, post)
-    referrer = User.where(referrer_code: ref).take
-    return unless referrer
+    IncrementRef.new(ref, post).call
+  end
 
-    post_referrer = PostReferrer.where(user: referrer, post: post).take
-    if post_referrer
-      post_referrer.count += 1
-      post_referrer.save
+  def increment_visit(post)
+    if post.visits.nil?
+      post.visits = 1
     else
-      new_referrer = PostReferrer.new(user: referrer, post: post, count: 1)
-      new_referrer.save
+      post.visits += 1
     end
+    post.save
   end
 end
