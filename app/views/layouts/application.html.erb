@@ -14,11 +14,18 @@
 
   <body>
   <div class="container">
-    <%= render 'shared/navbar'  %>
-    <%= render 'shared/banner' if @home %>
-    <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    
+      <%= render 'shared/navbar'  %>
+      <%= render 'shared/banner' if @home %>
+      
+        <%= render 'shared/sidebar' if @dashboard %>
+          <%  if @dashboard %>
+            <div class="content">
+          <% end %>
+          <%= yield %>
+        <%  if @dashboard %>
+          </div>
+         <% end %>
   </div>
   </body>
 </html>
