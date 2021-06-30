@@ -1,6 +1,8 @@
+
+
+
+<div class="attractions">
 <h1>My Attractions</h1>
-
-
  <% @attractions.each do |attraction| %>
     <h2> <%= attraction.name %></h2>
         <% attraction.posts.each do |post| %>
@@ -24,5 +26,5 @@
           
         <% end %>
   <% end %>
-
+</div>
 
