@@ -19,9 +19,13 @@
       <%= render 'shared/banner' if @home %>
       
         <%= render 'shared/sidebar' if @dashboard %>
-      <%= '<div class="content">'  if @dashboard %>
-        <%= yield %>
-      <%= '</div>'  if @dashboard %>
+          <%  if @dashboard %>
+            <div class="content">
+          <% end %>
+          <%= yield %>
+        <%  if @dashboard %>
+          </div>
+         <% end %>
   </div>
   </body>
 </html>
