@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user, :attraction).find(params[:id])
     ref = params[:ref]
     increment_ref(ref, @post)
   end

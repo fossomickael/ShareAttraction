@@ -1,2 +1,4 @@
 <h1><%= @post.title %> </h1>
+<h4>by @<%= link_to @post.user.username, user_path(@post.user) %> for 
+<%= link_to @post.attraction.name, attraction_path(@post.attraction) %></h4>
 <p class="article"><%= @post.content %></p>

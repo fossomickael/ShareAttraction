@@ -7,7 +7,7 @@
       <div class="card-article-infos">
         <h2><%= link_to post.title, post_path(post) %></h2>
         
-        <p class="card-author"><%=  post.user.username %> for <%=  link_to post.attraction.name, attraction_path(post.attraction) %></p>
+        <p class="card-author"><%= link_to "@#{post.user.username}", user_path(post.user) %> for <%=  link_to post.attraction.name, attraction_path(post.attraction) %></p>
       </div>
     </div>
   </div>

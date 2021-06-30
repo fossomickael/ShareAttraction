@@ -23,4 +23,5 @@ Rails.application.routes.draw do
     root to: 'dashboards#dashboard', as: :root_authenticate
   end
   root to: 'pages#home'
+  resources :users, only: [:show]
 end
