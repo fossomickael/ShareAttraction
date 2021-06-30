@@ -4,7 +4,7 @@ RSpec.describe Mention, type: :model do
   it "is valid with user and post" do
     post = create(:post)
     user = create(:user)
-    mention = create(:mention, user: user, post: post)
+    mention = build(:mention, user: user, post: post)
     expect(mention).to be_valid
   end
   it "should have a user" do
@@ -15,7 +15,7 @@ RSpec.describe Mention, type: :model do
   it "should be the right user" do
     post = create(:post)
     user = create(:user)
-    mention = create(:mention, user: user, post: post)
+    mention = build(:mention, user: user, post: post)
     expect(mention.user.id).to eq user.id
   end
   it "should have a post" do
@@ -24,23 +24,27 @@ RSpec.describe Mention, type: :model do
     expect(mention).to_not be_valid
   end
   it "post with one mention should create one mention" do
+    debut = Mention.count
     user = create(:user, username: "test")
     post = create(:post, content: "@test")
-    expect(Mention.count).to eq 1
+    expect(Mention.count - debut).to eq 1
   end
   it "post with two mentions should create two mentions" do
+    debut = Mention.count
     user = create(:user, username: "test")
     mike = create(:user, username: "mike")
     post = create(:post, content: "@test @mike")
-    expect(Mention.count).to eq 2
+    expect( Mention.count - debut ).to eq 2
   end
   it "post with unknown user should not create mention" do
+    debut = Mention.count
     post = create(:post, content: "@idontexist")
-    expect(Mention.count).to eq 0
+    expect(Mention.count).to eq debut
   end
-  it "post no mention should no create mentions" do
+  it "post with no @ should no create mentions" do
+    debut = Mention.count
     post = create(:post, content: "no mention")
-    expect(Mention.count).to eq 0
+    expect(Mention.count).to eq debut
   end
   it "no duplicated mentions" do
     user = build(:user, username: "elie")
@@ -49,5 +53,4 @@ RSpec.describe Mention, type: :model do
     mention2 = build(:mention, user: user, post: post)
     expect(mention2).to_not be_valid
   end
-  
 end
