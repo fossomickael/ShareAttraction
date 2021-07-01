@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :mentions, only: [:index]
+      get '/attractions/user/:username', to: 'attractions#one_user'
     end
   end
 

@@ -3,28 +3,7 @@
 
 <div class="attractions">
 <h1>My Attractions</h1>
- <% @attractions.each do |attraction| %>
-    <h2> <%= attraction.name %></h2>
-        <% attraction.posts.each do |post| %>
-         <div class="notification <%= "mentioned" if post.mentioned?(current_user) %>">
-            <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-            <div class="notification-content">
-               <p><small><%= "#{post.title} by #{post.user.email}"  %></small></p>
-               <p> My share link:<%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %></p>
-            </div>
+Wecome <span id="username"><%= current_user.username %></span>
 
-            <div class="notification-actions">
-            <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-            <script type="IN/Share" data-url=<%= "https://shareattraction.com#{post_path(post)}?ref=#{current_user.referrer_code}" %>></script>
-               <a class="twitter-share-button"
-               href="https://twitter.com/intent/tweet?text=<%=
-                post.title %> a post by <%= post.user.email %>&url=https://shareattraction.com<%=post_path(post)%>?ref=<%=current_user.referrer_code%>">
-               <i class="fab fa-twitter action"></i></a>
-               <a href="#"> <i class="fas fa-archive archive"></i></a>
-            </div>
-         </div>
-          
-        <% end %>
-  <% end %>
-</div>
+<div id="root"></div>
 
