@@ -29,5 +29,7 @@ describe 'Attraction API', type: :request do
     json = JSON.parse(response.body)
     expect(json["attractions"][0]["posts"][0]["id"]).to eq(post.id)
     expect(json["attractions"][0]["posts"][0]["title"]).to eq(post.title)
+    expect(json["attractions"][0]["posts"][0]["author"]).to eq(post.user.username)
+    expect(json["attractions"][0]["posts"][0]["twitter_link"]).to eq(post.twitter_link)
   end
 end

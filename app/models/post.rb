@@ -13,6 +13,20 @@ class Post < ApplicationRecord
     mentions.find_by(user_id: user.id).is_a?(Mention)
   end
 
+  def twitter_link
+    "https://twitter.com/intent/tweet?text=#{title} by #{user.username}&url=https://shareattraction.com/posts/#{id}"
+  end
+
+  def link
+    "https://shareattraction.com/posts/#{id}"
+  end
+
+  def linkedin_link
+    "https://shareattraction.com/posts/#{id}"
+  end
+
+ 
+
   private
 
   def save_mentions

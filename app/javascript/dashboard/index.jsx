@@ -10,11 +10,13 @@ import { createHistory as history } from 'history';
 import App from './components/app';
 import attractionsReducer from './reducers/attractions_reducer';
 const initialState = {
-    attractions: []
+    attractions: [],
+    user_id: 55
   };
 const reducers = combineReducers({
     // key: reducer
-    attractions: attractionsReducer
+    attractions: attractionsReducer,
+    user_id: (state = null, action) => state
 });
   
 const middlewares = applyMiddleware(promise, logger);

@@ -7,5 +7,10 @@ json.attractions @attractions do |attraction|
     else
       json.mentioned false
     end
+    json.author post.user.username
+    json.twitter_link post.twitter_link
+    json.linkedin_link post.linkedin_link
+    json.link post.link
+    json.referrer_code @user.referrer_code
   end
 end
