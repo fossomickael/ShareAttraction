@@ -6,7 +6,7 @@ import Attraction  from "../components/attraction";
 
 class AttractionList extends Component {
     componentDidMount() {
-      this.props.setAttractions(this.props.user_id);
+      this.props.setAttractions(this.props.username);
     }
   
     render() {
@@ -22,7 +22,7 @@ class AttractionList extends Component {
 const mapStateToProps = (state) => {
   return {
     attractions: state.attractions,
-    user_id: state.user_id
+    username: state.username
   };
 };
 

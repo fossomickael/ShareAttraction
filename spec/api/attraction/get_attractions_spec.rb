@@ -6,7 +6,7 @@ describe 'Attraction API', type: :request do
     attraction = create(:attraction, name: "Growth")
     create(:attraction_member, user: author, attraction: attraction)
     create(:post, attraction:attraction, user: author)
-    get :"/api/v1/attractions/user/#{author.id}"
+    get :"/api/v1/attractions/user/#{author.username}"
     json = JSON.parse(response.body)
     expect(json.keys).to contain_exactly('attractions')
   end
@@ -15,7 +15,7 @@ describe 'Attraction API', type: :request do
     attraction = create(:attraction, name: "Growth")
     create(:attraction_member, user: author, attraction: attraction)
     create(:post, attraction:attraction, user: author)
-    get :"/api/v1/attractions/user/#{author.id}"
+    get :"/api/v1/attractions/user/#{author.username}"
     json = JSON.parse(response.body)
     expect(json["attractions"][0]["id"]).to eq(attraction.id)
     expect(json["attractions"][0]["name"]).to eq(attraction.name)
@@ -25,7 +25,7 @@ describe 'Attraction API', type: :request do
     attraction = create(:attraction, name: "Growth")
     create(:attraction_member, user: author, attraction: attraction)
     post = create(:post, attraction:attraction, user: author)
-    get :"/api/v1/attractions/user/#{author.id}"
+    get :"/api/v1/attractions/user/#{author.username}"
     json = JSON.parse(response.body)
     expect(json["attractions"][0]["posts"][0]["id"]).to eq(post.id)
     expect(json["attractions"][0]["posts"][0]["title"]).to eq(post.title)

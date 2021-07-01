@@ -11,12 +11,12 @@ import App from './components/app';
 import attractionsReducer from './reducers/attractions_reducer';
 const initialState = {
     attractions: [],
-    user_id: 55
+    username: document.getElementById("username").innerText
   };
 const reducers = combineReducers({
     // key: reducer
     attractions: attractionsReducer,
-    user_id: (state = null, action) => state
+    username: (state = null, action) => state
 });
   
 const middlewares = applyMiddleware(promise, logger);
