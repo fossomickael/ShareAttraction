@@ -8,8 +8,9 @@ import logger from 'redux-logger';
 import { Route, Switch } from 'react-router-dom';
 import { createBrowserHistory  } from "history";
 import App from './components/app';
+import MentionedPosts from './containers/mentioned_posts';
 import attractionsReducer from './reducers/attractions_reducer';
-
+import mentionsReducer from './reducers/mentions_reducer';
 
 const history = createBrowserHistory();
 let username = "",
@@ -27,6 +28,7 @@ const initialState = {
 const reducers = combineReducers({
     // key: reducer
     attractions: attractionsReducer,
+    mentioned_posts: mentionsReducer,
     username: (state = null, action) => state
 });
   
@@ -37,8 +39,8 @@ ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
         <Switch>
-          <Route path="/" exact component={App} />
-          
+          <Route path="/dashboard" exact component={App} />
+          <Route path="/dashboard/mentionedposts" component={MentionedPosts} />
   
         </Switch>
       </Router>

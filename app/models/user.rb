@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_referrers, dependent: :destroy
 
+  has_many :mentions
+  has_many :mentioned_posts, through: :mentions, source: :post
+
   after_create :set_referrer_code
 
   validates :username, presence: true
@@ -17,6 +20,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
 
   validates :email, uniqueness: true
+
 
   def ismember?(attraction)
     !attractions.where(id: attraction.id).empty?
