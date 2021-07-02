@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
+  get '/dashboard', to: 'dashboards#dashboard'
   authenticated :user do 
     root to: 'dashboards#dashboard', as: :root_authenticate
   end
