@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
+  
   it "can belong to an attraction" do
     t = Post.reflect_on_association(:attraction)
     expect(t.macro).to eq(:belongs_to)
@@ -25,6 +26,7 @@ RSpec.describe Post, type: :model do
     post = build(:post, content: "@test")
     expect(post).to be_valid
   end
+  
   it "mentioned should return true if mentioned" do
     post = create(:post)
     user = create(:user)

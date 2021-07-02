@@ -33,6 +33,13 @@ RSpec.describe User, type: :model do
     user = build(:user, username: "with space")
     expect(user).to_not be_valid
   end
+  it "has_many mentions" do
+    t = Post.reflect_on_association(:mentions)
+    expect(t.macro).to eq(:has_many)
+  end
+  it "has many mentioned posts" do
+    should respond_to(:mentioned_posts)
+  end
   it "username should be unique" do
     create(:user, username: "same")
     user2 = build(:user, username: "same")

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :mentions, only: [:index]
       get '/attractions/user/:username', to: 'attractions#one_user'
+      get '/attractions/user/mentioned/:username', to: 'attractions#mentioned'
     end
   end
 
