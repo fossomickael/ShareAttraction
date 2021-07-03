@@ -5,15 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+SlackChannel.destroy_all
 Mention.destroy_all
 PostReferrer.destroy_all
 User.destroy_all
 Attraction.destroy_all
 
 mike = User.create(email: "fosso.mickael@attraction.com", username:"fossomickael", password: "123456")
-growth_hacking = Attraction.create(name:"Growth Hacking", description: "An attraction group to grow your business")
-ruby_is_cool = Attraction.create(name:"Ruby is cool", description: "An attraction group for Ruby enthusiasts")
+growth_hacking = Attraction.create(name:"growthhacking", description: "An attraction group to grow your business")
+ruby_is_cool = Attraction.create(name:"rubyiscool", description: "An attraction group for Ruby enthusiasts")
 attraction_member = AttractionMember.create(user:mike, attraction:growth_hacking)
 ruby_member = AttractionMember.create(user:mike, attraction:ruby_is_cool)
 post = Post.create(title:"How to grow your audience", user: mike, attraction: growth_hacking ,content: "« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.

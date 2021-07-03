@@ -1,4 +1,4 @@
-<h1><%= @attraction.name %> </h1>
+<h1>#<%= @attraction.name %> </h1>
 <% if  current_user && current_user.ismember?(@attraction) %>
     <button type="button" class="btn btn-secondary" id="joined">Joined</button>
 <% else %>
@@ -10,7 +10,7 @@
 
 <h3>Members</h3>
  <% @attraction.users.each do |user| %>
-    <%= user.email %>
+    <%= user.username %>
  <% end %>
 <div class="row">
   <% @attraction.posts.each do |post| %>
@@ -20,7 +20,7 @@
       <div class="card-article-infos">
         <h2><%= link_to post.title, post_path(post) %></h2>
         
-        <p class="card-author"><%=  post.user.email %> for <%=  link_to post.attraction.name, attraction_path(post.attraction) %></p>
+        <p class="card-author"><%=  post.user.username %> for <%=  link_to post.attraction.name, attraction_path(post.attraction) %></p>
       </div>
     </div>
   </div>

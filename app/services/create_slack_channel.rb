@@ -6,10 +6,9 @@ class CreateSlackChannel
 
   def call
     res = launch_request
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
+    json = JSON.parse(res.body)
+    if res.is_a?(Net::HTTPSuccess) && json["ok"]
       # OK
-      json = JSON.parse(res.body)
       create_slack_channel_in_db(json)
       return true
     else

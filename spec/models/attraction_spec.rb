@@ -9,6 +9,14 @@ RSpec.describe Attraction, type: :model do
     attraction = build(:attraction, description: nil)
     expect(attraction).to_not be_valid
   end
+  it "should not have spaces" do
+    attraction = build(:attraction, name: "with space")
+    expect(attraction).to_not be_valid
+  end
+  it "should not capital letters" do
+    attraction = build(:attraction, name: "CapitalLetters")
+    expect(attraction).to_not be_valid
+  end
   it "has many posts" do
     t = Attraction.reflect_on_association(:posts)
     expect(t.macro).to eq(:has_many)
