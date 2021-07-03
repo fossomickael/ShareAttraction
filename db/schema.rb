@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_180723) do
+ActiveRecord::Schema.define(version: 2021_07_03_172204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,14 @@ ActiveRecord::Schema.define(version: 2021_06_29_180723) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "slack_channels", force: :cascade do |t|
+    t.bigint "attraction_id", null: false
+    t.string "slack_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attraction_id"], name: "index_slack_channels_on_attraction_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -112,6 +120,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_180723) do
     t.string "name"
     t.string "first_name"
     t.string "username"
+    t.string "slack_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -126,4 +135,5 @@ ActiveRecord::Schema.define(version: 2021_06_29_180723) do
   add_foreign_key "post_referrers", "users"
   add_foreign_key "posts", "attractions"
   add_foreign_key "posts", "users"
+  add_foreign_key "slack_channels", "attractions"
 end
