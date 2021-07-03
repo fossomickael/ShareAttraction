@@ -5,8 +5,8 @@ feature "when post is visited" do
     users = FactoryBot.create_list(:user, 2)
     post_author = users[1]
     other_user = users[0]
-    attraction = create(:attraction)
-    post = create(:post)
+    attraction = create(:attraction, name: "attraction")
+    post = create(:post, title: "titre")
 
     visit "#{post_path(post)}?ref=#{other_user.referrer_code}"
     create(:attraction_member, user: post_author, attraction: attraction)

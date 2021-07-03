@@ -6,7 +6,7 @@ FactoryBot.define do
   end
 
   factory :attraction do
-    name { "Grow Fast" }
+    name { "growfast" }
     description { "Grow Your Brand Fast" }
   end
 
@@ -17,7 +17,6 @@ FactoryBot.define do
     attraction
     title { "How to grow your audience" }
     content { "There are five steps involved." }
-   
   end
 
   factory :attraction_member do
