@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 
 const Post = (props) => {
   return ( <div className="notification">
-        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' className="avatar-large" />
         <div className="notification-content">
-            <p><small>{props.post.title} by @{props.post.author}</small></p>
-            <p> My share link:{props.post.link}?ref={props.post.referrer_code}</p>
+            <p><small><a href={`${props.post.link}`}>{props.post.title}</a> by <span className="notification-author">@{props.post.author}</span></small></p>
+            <p>My share link:{props.post.link}?ref={props.post.referrer_code}</p>
         </div>
 
         <div className="notification-actions">
