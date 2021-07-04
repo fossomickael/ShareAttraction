@@ -1,15 +1,18 @@
 <h1>Nouveau groupe d'attraction</h1>
-<div>
+<div class="container">
 <%= simple_form_for(@attraction) do |f| %>
-  <%= f.label :name %>
-  (only lowcase)
-  <%= f.text_field :name %>
-  <br/>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br/>
-  <%= f.submit %>
-
+<div>
+  <div class="form-group">
+     
+      <%= f.input :name, hint: 'Pas d\'espace. Lettres minuscules.'  %>
+  </div>
+  <div class="form-group">
+    
+    <%= f.input :description, hint: 'Doit être présente.' %>
+   
+  </div>
+  <%= f.submit class: "btn btn-success" %>
+<div>
 <% end %>
 
 </div>
