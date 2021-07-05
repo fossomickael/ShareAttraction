@@ -2,10 +2,14 @@
 
 
 <%= simple_form_for(@post) do |f| %>
+ 
  <div class="field">
   <%= f.label :title %>
   <%= f.text_field :title %>
  </div>
+ <div class="field">
+    <%= f.input :photo, as: :file %>
+  </div>
   <div class="field ">
     <%= f.label :content %>
     <%= f.rich_text_area :content, class: "customized-min-height", data: {controller: 'mentions', target: 'mentions.field' }%>
@@ -15,4 +19,5 @@
     <%= f.input :published, label: 'Publier maintenant' %>
     <%= f.submit %>
   </div>
+  
 <% end %>

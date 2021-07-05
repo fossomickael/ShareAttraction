@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   has_rich_text :content
   has_many :mentions
 
+  has_one_attached :photo
+
   def mentioned?(user)
     mentions.find_by(user_id: user.id).is_a?(Mention)
   end
