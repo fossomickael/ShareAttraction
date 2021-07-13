@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   after_commit :save_mentions, on: :create
 
   has_many :post_referrers, dependent: :destroy
+  has_many :sharers, through: :post_referrers, class_name: "User", source: :user
 
   has_rich_text :content
   has_many :mentions
