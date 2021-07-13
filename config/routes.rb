@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get '/posts/:id/referrers', to: 'posts#referrers'
     end
   end
-
+  get '/dashboard/posts/:id/stats', to: 'dashboards#post_stats'
   get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
   get '/dashboard', to: 'dashboards#dashboard'
  
