@@ -6,7 +6,48 @@ const initPostChart = () => {
     if (!ctx)
     return
     const postid = ctx.dataset.postid;
-    fetchStats(postid).then(content => console.log(content)) 
+    let dataposts = [];
+    let labels = [];
+    fetchStats(postid).then(referrers => { 
+        const label = `Best referrers for ${referrers["title"]}`;
+        const sharers = referrers["sharers"]
+        Object.keys(sharers).forEach(key => {
+          labels.push(sharers[key]["username"]);
+          dataposts.push(sharers[key]["count"]);
+    });
+    
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: label, 
+            data: dataposts,
+        }] 
+    }
+
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        },
+    };   
+    
+
+    Chart.register(...registerables);
+      const myChart = new Chart(
+        ctx,
+        config
+      );
+
+    })
+
+      
+
 
 
 }
