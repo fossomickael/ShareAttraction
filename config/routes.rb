@@ -18,9 +18,10 @@ Rails.application.routes.draw do
       resources :mentions, only: [:index]
       get '/attractions/user/:username', to: 'attractions#one_user'
       get '/attractions/user/mentioned/:username', to: 'attractions#mentioned'
+      get '/posts/:id/referrers', to: 'posts#referrers'
     end
   end
-
+  get '/dashboard/posts/:id/stats', to: 'dashboards#post_stats'
   get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
   get '/dashboard', to: 'dashboards#dashboard'
  
