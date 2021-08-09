@@ -41,10 +41,10 @@ RSpec.describe Post, type: :model do
   it "should return a valid Twitter link" do
     mike = create(:user, username: "Mike")
     post = create(:post, title: "Grow", user: mike)
-    expect(post.twitter_link).to eq "https://twitter.com/intent/tweet?text=#{post.title} by #{mike.username}&url=https://shareattraction.com/posts/#{post.id}"
+    expect(post.twitter_link).to eq "https://twitter.com/intent/tweet?text=#{post.title} by #{mike.username}&url=https://shareattraction.com/#{post.id}"
   end
   it "should return a valid link " do
     post = create(:post, title: "Grow")
-    expect(post.link).to eq "https://shareattraction.com/posts/#{post.id}"
+    expect(post.link).to eq "https://shareattraction.com/#{post.id}"
   end
 end
