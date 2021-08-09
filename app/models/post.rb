@@ -17,15 +17,15 @@ class Post < ApplicationRecord
   end
 
   def twitter_link
-    "https://twitter.com/intent/tweet?text=#{title} by #{user.username}&url=https://shareattraction.com/posts/#{id}"
+    "https://twitter.com/intent/tweet?text=#{title} by #{user.username}&url=https://shareattraction.com/#{id}"
   end
 
   def link
-    "https://shareattraction.com/posts/#{id}"
+    "https://shareattraction.com/#{id}"
   end
 
   def linkedin_link
-    "https://shareattraction.com/posts/#{id}"
+    "https://shareattraction.com/#{id}"
   end
 
  

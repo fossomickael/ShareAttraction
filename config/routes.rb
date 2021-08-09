@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   end
   
   resources :posts, only: [:create, :new, :show]
-  
+
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :mentions, only: [:index]
@@ -27,4 +28,5 @@ Rails.application.routes.draw do
  
   root to: 'pages#home'
   resources :users, only: [:show]
+  get '/:id', to: 'posts#show'
 end

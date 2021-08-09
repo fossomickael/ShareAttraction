@@ -21,7 +21,6 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
 
-
   def ismember?(attraction)
     !attractions.where(id: attraction.id).empty?
   end
@@ -29,7 +28,7 @@ class User < ApplicationRecord
   private
 
   def set_referrer_code
-    code = "#{id}#{SecureRandom.hex(5)}"
+    code = "#{id}-#{SecureRandom.hex(3)}"
     self.referrer_code = code
     save
   end
