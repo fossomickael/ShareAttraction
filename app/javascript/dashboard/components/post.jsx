@@ -17,7 +17,7 @@ const Post = (props) => {
             <a className="twitter-share-button"
             href={`${props.post.twitter_link}?ref=${props.post.referrer_code}`}>
             <i className="fab fa-twitter action"></i></a>
-            <a href="#"> <i className="fas fa-archive archive"></i></a>
+            <a href={`/dashboard/posts/${props.post.id}/stats`}> <i class="fas fa-chart-line"></i></a>
         </div>
         </div>
   );
