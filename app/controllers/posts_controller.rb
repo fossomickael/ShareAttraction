@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
   before_action :set_post, only: %i[edit update]
+
   def new
     @post = Post.new
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
+    authorize @post
     @post.user = current_user
     if @post.save
       redirect_to post_path(@post)
@@ -17,6 +20,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:user, :attraction).find(params[:id])
+    authorize @post
     ref = params[:ref]
     increment_visit(@post)
     increment_ref(ref, @post)
@@ -37,6 +41,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+    authorize @post
   end
 
   def post_params

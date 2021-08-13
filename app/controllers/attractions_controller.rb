@@ -3,14 +3,17 @@ class AttractionsController < ApplicationController
 
   def new
     @attraction = Attraction.new
+    authorize @attraction
   end
 
   def index
+    policy_scope(Attraction)
     @attractions = Attraction.all
   end
 
   def create
     @attraction = Attraction.new(attraction_params)
+    authorize @attraction
     if @attraction.save
       CreateSlackChannel.new(@attraction).call
       redirect_to attraction_path(@attraction)
@@ -21,6 +24,7 @@ class AttractionsController < ApplicationController
 
   def show
     @attraction = Attraction.includes(:users,:posts).find(params[:id])
+    authorize @attraction
   end
 
   private
