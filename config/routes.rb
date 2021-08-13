@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :attraction_members, only: [:create, :new]
   end
   
-  resources :posts, only: [:create, :new, :show]
+  resources :posts, only: [:create, :new, :show, :edit, :update]
 
 
   namespace :api, defaults: { format: :json } do
