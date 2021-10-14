@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_181948) do
+ActiveRecord::Schema.define(version: 2021_10_14_195411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,18 +69,6 @@ ActiveRecord::Schema.define(version: 2021_10_14_181948) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "links", force: :cascade do |t|
-    t.text "long_url"
-    t.text "short_url"
-    t.bigint "user_id", null: false
-    t.bigint "attraction_id", null: false
-    t.integer "clicks"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["attraction_id"], name: "index_links_on_attraction_id"
-    t.index ["user_id"], name: "index_links_on_user_id"
-  end
-
   create_table "mentions", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
@@ -110,6 +98,18 @@ ActiveRecord::Schema.define(version: 2021_10_14_181948) do
     t.string "title"
     t.index ["attraction_id"], name: "index_posts_on_attraction_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "short_links", force: :cascade do |t|
+    t.text "long_url"
+    t.text "short_url"
+    t.bigint "user_id", null: false
+    t.bigint "attraction_id", null: false
+    t.integer "clicks"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attraction_id"], name: "index_short_links_on_attraction_id"
+    t.index ["user_id"], name: "index_short_links_on_user_id"
   end
 
   create_table "slack_channels", force: :cascade do |t|
@@ -142,13 +142,13 @@ ActiveRecord::Schema.define(version: 2021_10_14_181948) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attraction_members", "attractions"
   add_foreign_key "attraction_members", "users"
-  add_foreign_key "links", "attractions"
-  add_foreign_key "links", "users"
   add_foreign_key "mentions", "posts"
   add_foreign_key "mentions", "users"
   add_foreign_key "post_referrers", "posts"
   add_foreign_key "post_referrers", "users"
   add_foreign_key "posts", "attractions"
   add_foreign_key "posts", "users"
+  add_foreign_key "short_links", "attractions"
+  add_foreign_key "short_links", "users"
   add_foreign_key "slack_channels", "attractions"
 end
