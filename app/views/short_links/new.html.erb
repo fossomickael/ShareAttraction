@@ -6,7 +6,7 @@
             <%= f.input :long_url %>
         </div>
         <div class="form-group">
-            <%= f.association :attraction %>
+            <%= f.association :attraction, collection: @attractions %>
         </div>
             <%= f.submit class: "btn btn-success" %>
         <div>
