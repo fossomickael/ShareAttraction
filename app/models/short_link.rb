@@ -1,6 +1,5 @@
 class ShortLink < ApplicationRecord
 
-
   ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//)
   belongs_to :user, optional: true
   belongs_to :attraction
@@ -9,6 +8,15 @@ class ShortLink < ApplicationRecord
 
   validates :long_url, presence: true
 
+  def self.bijective_decode(string)
+    # based on base2dec() in Tcl translation
+    # at http://rosettacode.org/wiki/Non-decimal_radices/Convert#Ruby
+    i = 0
+    base = ALPHABET.length
+    string.each_char { |c| i = i * base + ALPHABET.index(c) }
+    i
+  end
+  
   private
 
   def set_short_url
@@ -29,12 +37,5 @@ class ShortLink < ApplicationRecord
     string.reverse
   end
 
-  def bijective_decode(string)
-    # based on base2dec() in Tcl translation 
-    # at http://rosettacode.org/wiki/Non-decimal_radices/Convert#Ruby
-    i = 0
-    base = ALPHABET.length
-    string.each_char { |c| i = i * base + ALPHABET.index(c) }
-    i
-  end
+  
 end
