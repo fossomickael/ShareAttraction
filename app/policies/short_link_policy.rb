@@ -3,6 +3,10 @@ class ShortLinkPolicy < ApplicationPolicy
     return true
   end
 
+  def redirection?
+    return true
+  end
+
   def show?
     return true
   end

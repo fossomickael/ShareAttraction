@@ -1,5 +1,5 @@
 class ShortLinksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create, :show]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show, :redirection]
   before_action :set_short_link, only: %i[show]
 
   def new
@@ -15,12 +15,21 @@ class ShortLinksController < ApplicationController
   def create
     @short_link = ShortLink.new(short_link_params)
     authorize @short_link
-    @short_link.user = User.first
+    @short_link.user = current_user
     if @short_link.save!
       redirect_to short_link_path(@short_link)
     else
       render :new
     end
+  end
+
+  def redirection
+    short = params[:short]
+    id = ShortLink.bijective_decode(short)
+    short_link = ShortLink.find(id)
+    authorize short_link
+    url = short_link.long_url
+    redirect_to url
   end
 
   private
