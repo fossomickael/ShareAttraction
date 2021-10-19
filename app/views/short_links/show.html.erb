@@ -1,3 +1,13 @@
-<%= "https://shr.best/#{@short_link.short_url}" %>
 
+
+<h1>Votre lien</h1>
 <%= @short_link.description %>
+<div>
+    <% if current_user %>
+       <p>Partager ce lien et gagner des points pour <%= @short_link.attraction.name %></p>
+       <p><%= "https://shr.best/#{@short_link.short_url}?ref=#{current_user.referrer_code}" %></p>
+    <% else %>
+        <%= "https://shr.best/#{@short_link.short_url}" %>
+        Se connecter pour obtenir un lien de partage personnalisé
+    <% end %>
+</div>

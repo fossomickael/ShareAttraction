@@ -15,7 +15,7 @@ class ShortLinksController < ApplicationController
   def create
     @short_link = ShortLink.new(short_link_params)
     authorize @short_link
-    @short_link.user = User.first
+    @short_link.user = current_user
     if @short_link.save!
       redirect_to short_link_path(@short_link)
     else
