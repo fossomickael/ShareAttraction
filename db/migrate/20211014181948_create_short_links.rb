@@ -1,6 +1,6 @@
-class CreateLinks < ActiveRecord::Migration[6.1]
+class CreateShortLinks < ActiveRecord::Migration[6.1]
   def change
-    create_table :links do |t|
+    create_table :short_links do |t|
       t.text :long_url
       t.text :short_url
       t.references :user, null: false, foreign_key: true
