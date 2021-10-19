@@ -13,7 +13,6 @@ class ShortLinksController < ApplicationController
   end
 
   def create
-
     @short_link = ShortLink.new(short_link_params)
     authorize @short_link
     @short_link.user = User.first
