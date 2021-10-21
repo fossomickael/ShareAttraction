@@ -15,7 +15,7 @@ class ShortLinksController < ApplicationController
   def create
     @short_link = ShortLink.new(short_link_params)
     authorize @short_link
-    @short_link.user = current_user
+    @short_link.user = current_user if current_user
     if @short_link.save!
       redirect_to short_link_path(@short_link)
     else
@@ -27,7 +27,19 @@ class ShortLinksController < ApplicationController
     short = params[:short]
     id = ShortLink.bijective_decode(short)
     short_link = ShortLink.find(id)
+    short_link.clicks.nil? ? short_link.clicks = 1 : short_link.clicks += 1
+    short_link.save
     authorize short_link
+    ref = params[:ref]
+    referrer = User.where(referrer_code: ref).take
+    link_referrer = ShortLinkReferrer.where(user: referrer, short_link: short_link).take
+    if link_referrer
+      link_referrer.count += 1
+      link_referrer.save!
+    else
+      new_referrer = ShortLinkReferrer.new(user: referrer, short_link: short_link, count: 1)
+      new_referrer.save!
+    end
     url = short_link.long_url
     redirect_to url
   end
@@ -40,11 +52,7 @@ class ShortLinksController < ApplicationController
   end
 
   def available_attractions
-    if current_user
-      current_user.attractions
-    else
-      [Attraction.first]
-    end
+    current_user&.attractions
   end
 
   def short_link_params

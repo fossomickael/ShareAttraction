@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'posts/new'
   get 'posts/create'
   get 'posts/show'
-  get ':short', to: 'short_links#redirection', constraints: { domain: 'shr.best' }
+  get ':short', to: 'short_links#redirection', constraints: { domain: ENV["SHORT_DOMAIN"] }
 
   devise_for :users
   

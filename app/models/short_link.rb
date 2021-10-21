@@ -2,7 +2,7 @@ class ShortLink < ApplicationRecord
 
   ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//)
   belongs_to :user, optional: true
-  belongs_to :attraction
+  belongs_to :attraction, optional: true
 
   after_create :set_short_url
 
@@ -16,7 +16,7 @@ class ShortLink < ApplicationRecord
     string.each_char { |c| i = i * base + ALPHABET.index(c) }
     i
   end
-  
+
   private
 
   def set_short_url
