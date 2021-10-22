@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_181441) do
+ActiveRecord::Schema.define(version: 2021_10_21_143855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,25 @@ ActiveRecord::Schema.define(version: 2021_10_18_181441) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "short_link_posts", force: :cascade do |t|
+    t.bigint "short_link_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_short_link_posts_on_post_id"
+    t.index ["short_link_id"], name: "index_short_link_posts_on_short_link_id"
+  end
+
+  create_table "short_link_referrers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "short_link_id", null: false
+    t.integer "count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["short_link_id"], name: "index_short_link_referrers_on_short_link_id"
+    t.index ["user_id"], name: "index_short_link_referrers_on_user_id"
+  end
+
   create_table "short_links", force: :cascade do |t|
     t.text "long_url"
     t.text "short_url"
@@ -149,6 +168,10 @@ ActiveRecord::Schema.define(version: 2021_10_18_181441) do
   add_foreign_key "post_referrers", "users"
   add_foreign_key "posts", "attractions"
   add_foreign_key "posts", "users"
+  add_foreign_key "short_link_posts", "posts"
+  add_foreign_key "short_link_posts", "short_links"
+  add_foreign_key "short_link_referrers", "short_links"
+  add_foreign_key "short_link_referrers", "users"
   add_foreign_key "short_links", "attractions"
   add_foreign_key "short_links", "users"
   add_foreign_key "slack_channels", "attractions"

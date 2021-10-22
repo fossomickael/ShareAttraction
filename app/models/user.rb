@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :mentions
   has_many :mentioned_posts, through: :mentions, source: :post
 
+  has_many :short_links, dependent: :destroy
+
   after_create :set_referrer_code
 
   validates :username, presence: true
