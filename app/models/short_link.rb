@@ -3,7 +3,7 @@ class ShortLink < ApplicationRecord
   ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//)
   belongs_to :user, optional: true
   belongs_to :attraction, optional: true
-
+  has_one :short_link_referrer, dependent: :destroy
   after_create :set_short_url
 
   validates :long_url, presence: true
