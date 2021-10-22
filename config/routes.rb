@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get 'posts/new'
   get 'posts/create'
   get 'posts/show'
-  get ':short', to: 'short_links#redirection', constraints: { domain: ENV["SHORT_DOMAIN"] }
-
+  get '/dashboard/posts/:id/stats', to: 'dashboards#post_stats'
+  get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
+  get '/dashboard', to: 'dashboards#dashboard'
+  
   devise_for :users
   
   resources :short_links, only: [:create, :new, :show]
@@ -25,12 +27,11 @@ Rails.application.routes.draw do
       get '/posts/:id/referrers', to: 'posts#referrers'
     end
   end
-  get '/dashboard/posts/:id/stats', to: 'dashboards#post_stats'
-  get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
-  get '/dashboard', to: 'dashboards#dashboard'
+
  
   root to: 'pages#home'
   resources :users, only: [:show]
-  
+  get ':short', to: 'short_links#redirection', constraints: { domain: ENV["SHORT_DOMAIN"] }
+
   get '/:id', to: 'posts#show'
 end

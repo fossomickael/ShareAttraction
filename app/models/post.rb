@@ -1,8 +1,12 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :attraction
+  has_one :short_link_post
+  has_one :short_link, through: :short_link_post
+
   validates :title, presence: true
   after_commit :save_mentions, on: :create
+  after_create :create_short_link
 
   has_many :post_referrers, dependent: :destroy
   has_many :sharers, through: :post_referrers, class_name: "User", source: :user
@@ -34,5 +38,9 @@ class Post < ApplicationRecord
 
   def save_mentions
     MentionCreator.new(self).call
+  end
+
+  def create_short_link
+    CreatePostLink.new(self).call
   end
 end

@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     authorize @post
     @post.user = current_user
     if @post.save
+      # CreatePostLink.new(post: @post).call
       redirect_to post_path(@post)
     else
       render :new

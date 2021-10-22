@@ -1,3 +1,4 @@
 class ShortLinkPost < ApplicationRecord
-  belongs_to :user
+  belongs_to :short_link
+  belongs_to :post
 end
