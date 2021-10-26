@@ -20,6 +20,18 @@ const initPostChart = () => {
         labels: labels,
         datasets: [{
             label: label, 
+            backgroundColor: [
+              'rgb(34, 40, 49)',
+              'rgb(0, 173, 181)',  
+              'rgb(238, 238, 238)',
+              'rgb(57, 62, 70)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(255, 205, 86, 0.2)',
+              
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(201, 203, 207, 0.2)'
+            ],
+            borderWidth: 1,
             data: dataposts,
         }] 
     }
