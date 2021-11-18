@@ -1,4 +1,6 @@
 class AttractionPolicy < ApplicationPolicy
+
+
   def create?
     return true
   end
@@ -10,6 +12,8 @@ class AttractionPolicy < ApplicationPolicy
   def index?
     return true
   end
+
+  
 
 
   class Scope < Scope
