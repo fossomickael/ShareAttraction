@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-describe 'Attractions API', type: :request do
+feature 'Attractions API', type: :request do
   scenario "render json with attractions key" do
     author = create(:user)
     attraction = create(:attraction, name: "growth")
+    sign_in_as(author)
     create(:attraction_member, user: author, attraction: attraction)
     create(:post, attraction:attraction, user: author)
     get :"/api/v1/attractions/user/#{author.username}"
@@ -13,6 +14,7 @@ describe 'Attractions API', type: :request do
   scenario "render json which contains joined attraction" do
     author = create(:user)
     attraction = create(:attraction, name: "growth")
+    sign_in_as(author)
     create(:attraction_member, user: author, attraction: attraction)
     create(:post, attraction:attraction, user: author)
     get :"/api/v1/attractions/user/#{author.username}"
@@ -22,6 +24,7 @@ describe 'Attractions API', type: :request do
   end
   scenario "render json which contains created post" do
     author = create(:user)
+    sign_in_as(author)
     attraction = create(:attraction, name: "growth")
     create(:attraction_member, user: author, attraction: attraction)
     post = create(:post, attraction:attraction, user: author)
