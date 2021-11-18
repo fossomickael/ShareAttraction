@@ -1,8 +1,7 @@
 require 'rails_helper'
 
- require 'capybara/rails'
-       require 'capybara/rspec'
-       include Capybara::DSL
+
+
 feature 'Attractions API', type: :request do
   scenario "render json with mentioned" do
     author = create(:user, username: "test")
@@ -15,7 +14,7 @@ feature 'Attractions API', type: :request do
   scenario "render json post" do
     mentioned_user = create(:user, username: "test")
     author = create(:user, username: "author")
-    sign_in_as(author)
+    sign_in_as(mentioned_user)
     post = create(:post, content: "@test", user: author)
     get :"/api/v1/attractions/user/mentioned/#{mentioned_user.username}"
     json = JSON.parse(response.body)
