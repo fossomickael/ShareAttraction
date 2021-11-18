@@ -12,6 +12,10 @@ class PostPolicy < ApplicationPolicy
     return true
   end
 
+  def referrers?
+    user.attractions.include? record.attraction
+  end
+
   def post_stats?
     user.attractions.include? record.attraction
   end
