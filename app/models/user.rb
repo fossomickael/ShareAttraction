@@ -27,8 +27,6 @@ class User < ApplicationRecord
     !attractions.where(id: attraction.id).empty?
   end
 
-  
-
   private
 
   def set_referrer_code
