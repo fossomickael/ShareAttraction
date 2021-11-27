@@ -37,6 +37,7 @@ AttractionMember.create(user:ethical_fabrics, attraction: wedressyou)
 AttractionMember.create(user:appolo, attraction: wedressyou)
 AttractionMember.create(user:mike, attraction: wedressyou)
 AttractionMember.create(user:emilie, attraction: wedressyou)
+AttractionMember.create(user:rene, attraction: wedressyou)
 
 post_shop = Post.create(title:"Our online shop is finally open! ", user: mike, 
 attraction: wedressyou ,content: "<p><a href='/users/#{emilie.id}'>@Emilie</a> helped us integrate Stripe, the most secure payment service avalaible on the market. 
