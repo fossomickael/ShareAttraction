@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
   get '/dashboard', to: 'dashboards#dashboard'
   
-    devise_for :users, controllers: {invitations: "users/invitations", sessions: "sessions", registrations: "registrations"}
+    devise_for :users, controllers: {invitations: "users/invitations"}
   
   resources :short_links, only: [:create, :new, :show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
