@@ -8,12 +8,18 @@ Rails.application.routes.draw do
   get '/dashboard/mentionedposts', to: 'dashboards#dashboard'
   get '/dashboard', to: 'dashboards#dashboard'
   
-  devise_for :users
+    devise_for :users, controllers: {invitations: "users/invitations", sessions: "sessions", registrations: "registrations"}
   
   resources :short_links, only: [:create, :new, :show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :attractions, only: [:create, :new, :show, :index] do
     resources :attraction_members, only: [:create, :new]
+    get '/invite', to: 'attractions#invite'
+    resources :users do
+      collection do
+        post 'batch_invite'
+      end
+    end
   end
   
   resources :posts, only: [:create, :new, :show, :edit, :update]
@@ -34,4 +40,6 @@ Rails.application.routes.draw do
   get ':short', to: 'short_links#redirection', constraints: { domain: ENV["SHORT_DOMAIN"] }
 
   get '/:id', to: 'posts#show'
+
+  
 end

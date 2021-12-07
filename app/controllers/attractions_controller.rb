@@ -27,6 +27,10 @@ class AttractionsController < ApplicationController
     authorize @attraction
   end
 
+  def invite
+    authorize Attraction.find(params[:attraction_id])
+  end
+
   private
 
   def attraction_params

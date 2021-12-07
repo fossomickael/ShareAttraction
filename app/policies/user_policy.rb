@@ -8,7 +8,6 @@ class UserPolicy < ApplicationPolicy
   end
 
    def mentioned?
-    
     user == record
   end
 
