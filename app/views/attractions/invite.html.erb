@@ -1,0 +1,8 @@
+<h1>Invite members to your attraction</h1>
+<div class="mail_invite_form">
+<%= form_tag batch_invite_attraction_users_path, method: :post do %>
+  <div><%= label_tag "Email of people you'd like to invite, separated by commas." %></div>
+  <%= text_area_tag :user_emails , nil, rows: 10, style: 'width:100%;' %>
+  <div><%= submit_tag "Invite!", class: "btn btn-flat"%></div>
+<% end %>
+</div>

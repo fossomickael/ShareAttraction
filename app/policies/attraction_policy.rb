@@ -13,8 +13,13 @@ class AttractionPolicy < ApplicationPolicy
     return true
   end
 
-  
+  def invite?
+    user.ismember?(record)
+  end
 
+  def batch_invite?
+    user.ismember?(record)
+  end
 
   class Scope < Scope
     def resolve
