@@ -15,8 +15,8 @@ class AttractionsController < ApplicationController
     @attraction = Attraction.new(attraction_params)
     authorize @attraction
     if @attraction.save
-      CreateSlackChannel.new(@attraction).call
-      redirect_to attraction_path(@attraction)
+      AttractionMember.create(attraction: @attraction, user: current_user)
+      redirect_to attraction_invite_path(@attraction)
     else
       render :new
     end
