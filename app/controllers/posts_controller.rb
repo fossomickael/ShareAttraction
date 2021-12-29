@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     ref = params[:ref]
     increment_visit(@post)
     increment_ref(ref, @post)
+    @ref_path = ref_path
   end
 
   def edit
@@ -60,5 +61,13 @@ class PostsController < ApplicationController
       post.visits += 1
     end
     post.save
+  end
+
+  def ref_path
+    if current_user
+      return "?ref=#{current_user.referrer_code}"
+    else
+      return ""
+    end
   end
 end

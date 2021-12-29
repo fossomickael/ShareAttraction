@@ -20,7 +20,8 @@ class Post < ApplicationRecord
   end
 
   def twitter_link
-    "https://twitter.com/intent/tweet?text=#{title} by #{user.username}&url=https://shareattraction.com/#{id}"
+    p = URI::Parser.new
+    p.escape("https://twitter.com/intent/tweet?text=#{title} by #{user.username}&url=https://shareattraction.com/#{id}")
   end
 
   def link
