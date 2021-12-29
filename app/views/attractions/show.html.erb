@@ -1,8 +1,8 @@
 <h1>#<%= @attraction.name %> </h1>
 <% if  current_user && current_user.ismember?(@attraction) %>
-    <button type="button" class="btn btn-secondary" id="joined">Joined</button>
+    <button type="button" class="btn btn-secondary" id="joined"><%= t :joined %></button>
 <% else %>
-    <%= button_to "Join", attraction_attraction_members_path(@attraction), class: "btn btn-flat"%>
+    <%= button_to t(:join), attraction_attraction_members_path(@attraction), class: "btn btn-flat"%>
 <% end %>
 <p><%= @attraction.description %></p>
 
