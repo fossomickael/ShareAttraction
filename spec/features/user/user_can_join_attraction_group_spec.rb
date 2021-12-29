@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 feature "user can join attractions" do
+  before(:each) do
+    I18n.locale = :en
+  end
+
   scenario "should see Join if not a member" do
     sign_in
     attraction = create(:attraction)
